@@ -25,7 +25,6 @@ export class PasajeroService {
 
   listarPasajeros(){
     this._http.get<Pasajero[]>(urlBase+"/passenger").subscribe((res) =>{
-      console.log(res)
       this._pasajeros=res;
     })
   }
@@ -35,6 +34,7 @@ export class PasajeroService {
     
   }
 
+
   listarTipoDocumento(){
     this._http.get<TipoDocumento[]>(urlBase+"/doctype").subscribe((res) =>{
       console.log(res)
@@ -43,9 +43,20 @@ export class PasajeroService {
      
    }
 
+   insertarPasajero(opasajero:Pasajero){
+    return this._http.post<Pasajero>(urlBase+"/passenger/",opasajero);
+   }
+
+   
+   actualizarPasajero(opasajero:Pasajero){
+    return this._http.put<Pasajero>(urlBase+"/passenger/",opasajero);
+   }
+
   get tipodocumentos():TipoDocumento[]{
     return [...this._tipodocumentos]
   }
+
+
 
 
 }

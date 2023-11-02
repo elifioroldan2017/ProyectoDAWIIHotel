@@ -52,6 +52,24 @@ export class FormHabitacionComponent {
     this.routes.navigate(["habitacion"])
   }
   guardar(){
-    
+    if(this.habitacion.roomId==0){
+
+      this.habitacionService.insertarHabitacion(this.habitacion).subscribe(res=>{
+          if(res.roomId>0){
+             this.routes.navigate(["habitacion"])
+             this.habitacionService.listarHabitacion();
+          }
+      })
+
+    }else{
+
+      this.habitacionService.actualizarHabitacion(this.habitacion).subscribe(res=>{
+         if(res.roomId>0){
+             this.routes.navigate(["habitacion"])
+             this.habitacionService.listarHabitacion();
+          }
+      })
+
+    }
   }
 }

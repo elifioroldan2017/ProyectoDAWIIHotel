@@ -61,6 +61,15 @@ export class HabitacionService {
     return this._http.get<Habitacion>(urlBase+"/room/"+id);
   }
 
+  insertarHabitacion(ohabitacion:Habitacion){
+    return this._http.post<Habitacion>(urlBase+"/room/",ohabitacion);
+   }
+
+   
+   actualizarHabitacion(ohabitacion:Habitacion){
+    return this._http.put<Habitacion>(urlBase+"/room/",ohabitacion);
+   }
+
   constructor(private _http:HttpClient) {
     this.listarEstadoHabitacion()
     this.listarPiso();

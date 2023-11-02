@@ -42,7 +42,21 @@ export class FormPasajeroComponent {
   }
 
   guardar(){
-
+    if(this.pasajero.idpas==0){
+      this.pasajeroService.insertarPasajero(this.pasajero).subscribe(res =>{
+        if(res.idpas>0){
+          this.router.navigate(["pasajero"]) 
+          this.pasajeroService.listarPasajeros();
+        }
+      })
+    }else{
+      this.pasajeroService.actualizarPasajero(this.pasajero).subscribe(res=>{
+        if(res.idpas>0){
+          this.router.navigate(["pasajero"]) 
+          this.pasajeroService.listarPasajeros();
+        }
+      })
+    }
   }
 
 
