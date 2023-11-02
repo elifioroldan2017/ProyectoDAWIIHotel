@@ -19,6 +19,14 @@ export class UsuarioService {
   })
  }
 
+ agregarUsuario(ousuario:Usuario):Observable<Usuario>{
+    return this._http.post<Usuario>(urlBase+"/user/",ousuario)
+ }
+
+ editarUsuario(ousuario:Usuario):Observable<Usuario>{
+  return this._http.put<Usuario>(urlBase+"/user/",ousuario)
+ }
+
  obtenerUsuario(id:number): Observable<Usuario>{
   return this._http.get<Usuario>(urlBase+"/user/"+id);
  }

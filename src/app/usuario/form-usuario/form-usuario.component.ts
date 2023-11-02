@@ -46,6 +46,20 @@ export class FormUsuarioComponent {
   }
 
   guardar(){
-
+      if(this.usuario.iduser==0){
+        this.usuarioService.agregarUsuario(this.usuario).subscribe(res=>{
+          if(res.iduser>0){
+            this.routes.navigate(["usuario"])
+            this.usuarioService.listarUsuarios();
+          }
+        })
+      }else{
+        this.usuarioService.editarUsuario(this.usuario).subscribe(res=>{
+          if(res.iduser>0){
+            this.routes.navigate(["usuario"])
+            this.usuarioService.listarUsuarios();
+          }
+        })
+      }
   }
 }
