@@ -9,7 +9,7 @@ import { CargarScriptsService } from 'src/app/cargar-scripts.service';
 })
 export class HabitacionPrincipalComponent  {
 
-
+  numerohabitacion:string=""
   constructor(private routes:Router){
 
   }
