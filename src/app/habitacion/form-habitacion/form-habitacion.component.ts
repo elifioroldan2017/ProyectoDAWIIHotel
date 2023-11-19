@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { HabitacionService } from '../habitacion.service';
 import { Piso } from '../interfaces/Piso';
 import { EstadoHabitacion } from '../interfaces/EstadoHabitacion';
 import { TipoHabitacion } from '../interfaces/TipoHabitacion';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Habitacion } from '../interfaces/Habitacion';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-form-habitacion',
@@ -12,6 +13,7 @@ import { Habitacion } from '../interfaces/Habitacion';
   styleUrls: ['./form-habitacion.component.css']
 })
 export class FormHabitacionComponent {
+  @ViewChild('form_habitacion') form_habitacion!:NgForm;
 
   titulo:string=""
   habitacion:Habitacion={
@@ -23,6 +25,29 @@ export class FormHabitacionComponent {
     roomTypeId:    0,
     roomActive:    ""
   }
+  private controlInvalidAndTouched(controlName: string): boolean {
+    const control = this.form_habitacion?.controls[controlName];
+    return control?.invalid && control.touched;
+}
+nroHabitacionInvalido(): boolean {
+  return this.controlInvalidAndTouched('roomNumber') ;
+}
+precioInvalido(): boolean {
+  const roomPrice = this.form_habitacion?.controls['roomPrice'].value;
+  return (
+    roomPrice === 0 ||
+    this.controlInvalidAndTouched('roomPrice')
+  );
+}
+EstadoHabitacionInvalido(): boolean {
+  return this.form_habitacion?.controls['roomStatusId'].value === 0;
+}
+nroPisoInvalido(): boolean {
+  return this.form_habitacion?.controls['floorId'].value === 0;
+}
+tipoHabitacionInvalido(): boolean {
+  return this.form_habitacion?.controls['roomTypeId'].value === 0;
+}
   
   constructor(private habitacionService:HabitacionService,private routes:Router,
     private activateRoute:ActivatedRoute){

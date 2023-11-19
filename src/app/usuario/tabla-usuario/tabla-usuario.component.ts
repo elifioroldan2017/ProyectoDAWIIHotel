@@ -22,4 +22,7 @@ export class TablaUsuarioComponent {
   editar(id:number){
     this.routes.navigate(["usuario/editar/"+id])
   }
+
+
+  
 }

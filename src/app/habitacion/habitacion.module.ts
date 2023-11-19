@@ -5,13 +5,15 @@ import { TablaHabitacionComponent } from './tabla-habitacion/tabla-habitacion.co
 import { HabitacionService } from './habitacion.service';
 import { FormHabitacionComponent } from './form-habitacion/form-habitacion.component';
 import {FormsModule} from "@angular/forms"
+import { CustomMinDirective } from './form-habitacion/custom-min.directive';
 
 
 @NgModule({
   declarations: [
     HabitacionPrincipalComponent,
     TablaHabitacionComponent,
-    FormHabitacionComponent
+    FormHabitacionComponent,
+    CustomMinDirective
   ],
   imports: [
     FormsModule,

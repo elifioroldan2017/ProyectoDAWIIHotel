@@ -36,7 +36,7 @@ export class PasajeroService {
 
 
   listarTipoDocumento(){
-    this._http.get<TipoDocumento[]>(urlBase+"/doctype").subscribe((res) =>{
+    this._http.get<TipoDocumento[]>(urlBase+"/doctypes").subscribe((res) =>{
       console.log(res)
       this._tipodocumentos=res;
     })
