@@ -52,6 +52,10 @@ export class PasajeroService {
     return this._http.put<Pasajero>(urlBase+"/passenger/",opasajero);
    }
 
+   eliminarPasajero(id:number){
+    return this._http.delete(urlBase+"/passenger/deletepass/"+id);
+  }
+
   get tipodocumentos():TipoDocumento[]{
     return [...this._tipodocumentos]
   }
