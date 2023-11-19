@@ -6,6 +6,7 @@ import { TipoHabitacion } from '../interfaces/TipoHabitacion';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Habitacion } from '../interfaces/Habitacion';
 import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-habitacion',
@@ -77,24 +78,45 @@ tipoHabitacionInvalido(): boolean {
     this.routes.navigate(["habitacion"])
   }
   guardar(){
-    if(this.habitacion.roomId==0){
 
-      this.habitacionService.insertarHabitacion(this.habitacion).subscribe(res=>{
-          if(res.roomId>0){
-             this.routes.navigate(["habitacion"])
-             this.habitacionService.listarHabitacion();
-          }
-      })
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta seguro de guardar los datos del curso?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+      cancelButtonText:"No"
+    }).then((result) => {
+      if (result.isConfirmed) {
+       
+        if(this.habitacion.roomId==0){
 
-    }else{
+          this.habitacionService.insertarHabitacion(this.habitacion).subscribe(res=>{
+              if(res.roomId>0){
+                Swal.fire('Exito!', 'Se  guardó los cambios correctamente', 'success');
+                 this.routes.navigate(["habitacion"])
+                 this.habitacionService.listarHabitacion();
+              }
+          })
+    
+        }else{
+    
+          this.habitacionService.actualizarHabitacion(this.habitacion).subscribe(res=>{
+             if(res.roomId>0){
+                Swal.fire('Exito!', 'Se  actualizó los cambios correctamente', 'success');
+                 this.routes.navigate(["habitacion"])
+                 this.habitacionService.listarHabitacion();
+              }
+          })
+    
+        }
 
-      this.habitacionService.actualizarHabitacion(this.habitacion).subscribe(res=>{
-         if(res.roomId>0){
-             this.routes.navigate(["habitacion"])
-             this.habitacionService.listarHabitacion();
-          }
-      })
+      }
+    });
 
-    }
+
+   
   }
 }
