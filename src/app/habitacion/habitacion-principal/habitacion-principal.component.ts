@@ -19,4 +19,8 @@ export class HabitacionPrincipalComponent  {
     this.routes.navigate(["habitacion/agregar"])
   }
 
+  buscarHabitacion(){
+
+  }
+
 }

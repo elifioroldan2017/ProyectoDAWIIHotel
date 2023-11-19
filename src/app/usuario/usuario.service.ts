@@ -35,6 +35,12 @@ export class UsuarioService {
    return this._http.delete(urlBase+"/user/"+id);
  }
 
+ buscarUsuarios(nombreusuario:string){
+  this._http.get<Usuario[]>(urlBase+"/user/username/"+nombreusuario).subscribe(res=>{
+    this._usuarios=res;
+   }) 
+ }
+
 
   constructor(private _http:HttpClient) {
     this.listarUsuarios()

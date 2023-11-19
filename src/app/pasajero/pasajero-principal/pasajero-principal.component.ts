@@ -8,7 +8,7 @@ import { CargarScriptsService } from 'src/app/cargar-scripts.service';
   styleUrls: ['./pasajero-principal.component.css']
 })
 export class PasajeroPrincipalComponent {
-  
+  nombrepasajero:string=""
   constructor(private router:Router){
 
   }
@@ -16,5 +16,9 @@ export class PasajeroPrincipalComponent {
 
   agregar(){
     this.router.navigate(["pasajero/agregar"])
+  }
+
+  buscarPasajero(){
+
   }
 }
