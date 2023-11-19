@@ -5,6 +5,7 @@ import { TipousuarioService } from 'src/app/tipousuario/tipousuario.service';
 import { Usuario } from '../interface/Usuario';
 import { UsuarioService } from '../usuario.service';
 import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-usuario',
@@ -64,20 +65,40 @@ tipoUsuarioInvalido(): boolean {
   }
 
   guardar(){
-      if(this.usuario.iduser==0){
-        this.usuarioService.agregarUsuario(this.usuario).subscribe(res=>{
-          if(res.iduser>0){
-            this.routes.navigate(["usuario"])
-            this.usuarioService.listarUsuarios();
-          }
-        })
-      }else{
-        this.usuarioService.editarUsuario(this.usuario).subscribe(res=>{
-          if(res.iduser>0){
-            this.routes.navigate(["usuario"])
-            this.usuarioService.listarUsuarios();
-          }
-        })
+
+    
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta seguro de guardar los datos del usuario?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+      cancelButtonText:"No"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if(this.usuario.iduser==0){
+          this.usuarioService.agregarUsuario(this.usuario).subscribe(res=>{
+            if(res.iduser>0){
+              Swal.fire('Exito!', 'Se  guardó los cambios correctamente', 'success');
+              this.routes.navigate(["usuario"])
+              this.usuarioService.listarUsuarios();
+            }
+          })
+        }else{
+          this.usuarioService.editarUsuario(this.usuario).subscribe(res=>{
+            if(res.iduser>0){
+              Swal.fire('Exito!', 'Se  actualizó los cambios correctamente', 'success');
+              this.routes.navigate(["usuario"])
+              this.usuarioService.listarUsuarios();
+            }
+          })
+        }
+
       }
+    });
+
+  
   }
 }

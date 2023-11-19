@@ -79,7 +79,7 @@ export class FormPasajeroComponent {
 
     Swal.fire({
       title: '¿Estás seguro?',
-      text: 'Esta seguro de guardar los datos del curso?',
+      text: 'Esta seguro de guardar los datos del pasajero?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

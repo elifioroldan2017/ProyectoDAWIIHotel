@@ -81,7 +81,7 @@ tipoHabitacionInvalido(): boolean {
 
     Swal.fire({
       title: '¿Estás seguro?',
-      text: 'Esta seguro de guardar los datos del curso?',
+      text: 'Esta seguro de guardar los datos de la habitación?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
