@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { HabitacionService } from 'src/app/habitacion/habitacion.service';
 
 @Component({
@@ -8,12 +9,16 @@ import { HabitacionService } from 'src/app/habitacion/habitacion.service';
 })
 export class ReservaPrincipalComponent {
 
-  constructor(private habitacionService:HabitacionService){
-    
+  constructor(private habitacionService:HabitacionService,private router:Router){
+
   }
 
   get pisos(){
     return this.habitacionService.pisos
+  }
+
+  verHabitacion(idpiso:number){
+    this.router.navigate(["reserva/piso/"+idpiso])
   }
 
 }
