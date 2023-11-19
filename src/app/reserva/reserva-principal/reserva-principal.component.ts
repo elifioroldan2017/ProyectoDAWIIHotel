@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HabitacionService } from 'src/app/habitacion/habitacion.service';
 
 @Component({
   selector: 'app-reserva-principal',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./reserva-principal.component.css']
 })
 export class ReservaPrincipalComponent {
+
+  constructor(private habitacionService:HabitacionService){
+    
+  }
+
+  get pisos(){
+    return this.habitacionService.pisos
+  }
 
 }
