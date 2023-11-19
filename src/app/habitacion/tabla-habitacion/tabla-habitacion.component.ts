@@ -1,23 +1,25 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { HabitacionService } from '../habitacion.service';
 import { Habitacion } from '../interfaces/Habitacion';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { CargarScriptsService } from 'src/app/cargar-scripts.service';
 
 @Component({
   selector: 'app-tabla-habitacion',
   templateUrl: './tabla-habitacion.component.html',
   styleUrls: ['./tabla-habitacion.component.css']
 })
-export class TablaHabitacionComponent {
+export class TablaHabitacionComponent   {
 
   get habitaciones():Habitacion[]{
     return this.habitacionServices.habitaciones;
   }
 
   constructor(private habitacionServices:HabitacionService,private routes:Router){
-
+   
   }
+ 
 
   editar(id:number){
     this.routes.navigate(["habitacion/editar/"+id])

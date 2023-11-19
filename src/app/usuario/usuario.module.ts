@@ -6,6 +6,7 @@ import { UsuarioService } from './usuario.service';
 import { FormUsuarioComponent } from './form-usuario/form-usuario.component';
 import {FormsModule} from "@angular/forms"
 import { CustomMinDirective } from './form-usuario/custom-min.directive';
+import { MenuModule } from '../menu/menu.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { CustomMinDirective } from './form-usuario/custom-min.directive';
   ],
   imports: [
     FormsModule,
-    CommonModule
+    CommonModule,
+    MenuModule
   ],
   providers:[UsuarioService]
 })

@@ -17,7 +17,7 @@ export class TablaUsuarioComponent {
     return [...this.usuarioService.usuarios]
   }
   constructor(private usuarioService:UsuarioService,private routes:Router,private _CargarScripts:CargarScriptsService){
-    _CargarScripts.Carga(["datatable"]);
+    //_CargarScripts.Carga(["datatable"]);
 
   }
   editar(id:number){

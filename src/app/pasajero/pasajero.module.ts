@@ -6,6 +6,7 @@ import { PasajeroService } from './pasajero.service';
 import { FormPasajeroComponent } from './form-pasajero/form-pasajero.component';
 import {FormsModule} from "@angular/forms"
 import { CustomMinDirective } from './form-pasajero/custom-min.directive';
+import { MenuModule } from '../menu/menu.module';
 
 
 
@@ -20,7 +21,8 @@ import { CustomMinDirective } from './form-pasajero/custom-min.directive';
   ],
   imports: [
     FormsModule,
-    CommonModule
+    CommonModule,
+    MenuModule
   ],
   providers:[
     PasajeroService

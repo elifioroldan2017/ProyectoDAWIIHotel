@@ -6,6 +6,7 @@ import { HabitacionService } from './habitacion.service';
 import { FormHabitacionComponent } from './form-habitacion/form-habitacion.component';
 import {FormsModule} from "@angular/forms"
 import { CustomMinDirective } from './form-habitacion/custom-min.directive';
+import { MenuModule } from '../menu/menu.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { CustomMinDirective } from './form-habitacion/custom-min.directive';
   ],
   imports: [
     FormsModule,
-    CommonModule
+    CommonModule,
+    MenuModule
   ],
   providers:[
     HabitacionService

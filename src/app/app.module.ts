@@ -16,12 +16,14 @@ import { TablaHabitacionComponent } from './habitacion/tabla-habitacion/tabla-ha
 import { HabitacionPrincipalComponent } from './habitacion/habitacion-principal/habitacion-principal.component';
 import { HabitacionModule } from './habitacion/habitacion.module';
 import {HttpClientModule} from "@angular/common/http"
+import { MenuModule } from './menu/menu.module';
+import { MenuComponent } from './menu/menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPrincipalComponent
-  ],
+    ],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -31,7 +33,8 @@ import {HttpClientModule} from "@angular/common/http"
     TipousuarioModule,
     UsuarioModule,
     LoginModule,
-    HabitacionModule
+    HabitacionModule,
+    MenuModule
   ],
   providers: [
     CargarScriptsService

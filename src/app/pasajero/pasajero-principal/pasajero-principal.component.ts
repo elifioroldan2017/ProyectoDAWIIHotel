@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CargarScriptsService } from 'src/app/cargar-scripts.service';
 
 @Component({
   selector: 'app-pasajero-principal',
@@ -11,6 +12,8 @@ export class PasajeroPrincipalComponent {
   constructor(private router:Router){
 
   }
+
+
   agregar(){
     this.router.navigate(["pasajero/agregar"])
   }
