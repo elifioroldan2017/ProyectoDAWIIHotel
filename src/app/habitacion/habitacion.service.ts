@@ -70,6 +70,10 @@ export class HabitacionService {
     return this._http.put<Habitacion>(urlBase+"/room/",ohabitacion);
    }
 
+   eliminarHabitacion(id:number){
+    return this._http.delete(urlBase+"/room/"+id);
+  }
+
   constructor(private _http:HttpClient) {
     this.listarEstadoHabitacion()
     this.listarPiso();
