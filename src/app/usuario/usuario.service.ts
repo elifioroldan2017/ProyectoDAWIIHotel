@@ -31,6 +31,11 @@ export class UsuarioService {
   return this._http.get<Usuario>(urlBase+"/user/"+id);
  }
 
+ eliminarUsuario(id:number){
+   return this._http.delete(urlBase+"/user/"+id);
+ }
+
+
   constructor(private _http:HttpClient) {
     this.listarUsuarios()
    }
