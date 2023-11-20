@@ -59,7 +59,6 @@ export class HabitacionpisoComponent {
       }
       this.detalleService.agregarDetalle(this.detallereserva)
       this.router.navigate(["/detallereserva"])
-      console.log(this.detallereserva)
     }
 
 }
