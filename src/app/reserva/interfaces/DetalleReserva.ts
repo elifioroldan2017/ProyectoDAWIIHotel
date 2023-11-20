@@ -1,5 +1,8 @@
 export default interface DetalleReserva{
-    fechaInicio: string,
-    fechaFin:string,
-    nota:string
+    detailId:number,
+    roomId:number
+    checkin: string,
+    checkout:string,
+    price:number,
+    note:string,
 }

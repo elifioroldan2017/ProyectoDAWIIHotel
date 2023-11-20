@@ -13,7 +13,7 @@
               <li class="list-group-item">Tipo de Habitación: {{habitacion.objRoomType?.desc}}</li>
             </ul>
             <div class="d-flex justify-content-center" style="margin-top: 1em;">
-              <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary text-center">Reservar</button>
+              <button data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="reservar(habitacion.roomId,habitacion.roomPrice)" class="btn btn-primary text-center">Reservar</button>
             </div>
           </div>
         </div>
@@ -37,25 +37,25 @@
                   <div>
                     <label>Ingrese fecha inicio reserva</label>
                     <input   name="fechaInicio"
-                    [(ngModel)]="detallereserva.fechaInicio"  type="date" class="form-control" />
+                    [(ngModel)]="detallereserva.checkin"  type="date" class="form-control" />
                 </div>
                 <div>
                     <label>Ingrese fecha fin reserva</label>
 
-                    <input name="fechaFin" [(ngModel)]="detallereserva.fechaFin"  type="date" class="form-control" />
+                    <input name="fechaFin" [(ngModel)]="detallereserva.checkout"  type="date" class="form-control" />
 
                 </div>
                 <div>
                   <label>Detalle</label>
 
-                  <textarea name="nota" [(ngModel)]="detallereserva.nota" class="form-control"></textarea>
+                  <textarea name="nota" [(ngModel)]="detallereserva.note" class="form-control"></textarea>
 
               </div>
         </form>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" id="btnCerrar" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         <button type="button" (click)="aceptar()" class="btn btn-primary">Aceptar</button>
       </div>
     </div>
