@@ -48,6 +48,8 @@ export class PasajeroService {
    }
 
    
+
+   
    actualizarPasajero(opasajero:Pasajero){
     return this._http.put<Pasajero>(urlBase+"/passenger/",opasajero);
    }
@@ -60,6 +62,11 @@ export class PasajeroService {
     return [...this._tipodocumentos]
   }
 
+  buscarPasajeros(nombrepasajero:string){
+    this._http.get<Pasajero[]>(urlBase+"/passenger/name/"+nombrepasajero).subscribe(res=>{
+      this._pasajeros=res;
+     }) 
+   }
 
 
 
