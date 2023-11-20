@@ -1,6 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CargarScriptsService } from 'src/app/cargar-scripts.service';
+import { HabitacionService } from '../habitacion.service';
 
 @Component({
   selector: 'app-habitacion-principal',
@@ -10,7 +11,7 @@ import { CargarScriptsService } from 'src/app/cargar-scripts.service';
 export class HabitacionPrincipalComponent  {
 
   numerohabitacion:string=""
-  constructor(private routes:Router){
+  constructor(private routes:Router,private habitacionService:HabitacionService){
 
   }
 
@@ -20,7 +21,11 @@ export class HabitacionPrincipalComponent  {
   }
 
   buscarHabitacion(){
-
-  }
+    if(this.numerohabitacion==""){
+      this.habitacionService.listarHabitacion();
+    }else{
+      this.habitacionService.buscarhabitacion(this.numerohabitacion)
+    }
+  } 
 
 }

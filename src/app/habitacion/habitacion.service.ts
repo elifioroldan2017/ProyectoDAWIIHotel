@@ -74,6 +74,12 @@ export class HabitacionService {
     return this._http.delete(urlBase+"/room/"+id);
   }
 
+  buscarhabitacion(nombrehabitacion:string){
+    this._http.get<Habitacion[]>(urlBase+"/room/roomnumber/"+nombrehabitacion).subscribe(res=>{
+      this._habitacion=res;
+     }) 
+   }
+
   constructor(private _http:HttpClient) {
     this.listarEstadoHabitacion()
     this.listarPiso();
