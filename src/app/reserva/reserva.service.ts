@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Habitacion } from '../habitacion/interfaces/Habitacion';
 import urlBase from '../contantes';
+import Reserva from './interfaces/Reserva';
 
 @Injectable({
   providedIn: 'root'
@@ -18,4 +19,10 @@ export class ReservaService {
   constructor(private _http:HttpClient) { 
 
   }
+
+  insertarReserva(oreserva:Reserva){
+    return this._http.post<Reserva>(urlBase+"/reservation",oreserva);
+   }
+
+
 }
