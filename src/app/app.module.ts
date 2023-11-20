@@ -18,11 +18,13 @@ import { HabitacionModule } from './habitacion/habitacion.module';
 import {HttpClientModule} from "@angular/common/http"
 import { MenuModule } from './menu/menu.module';
 import { MenuComponent } from './menu/menu/menu.component';
+import { DetallereservaPrincipalComponent } from './detallereserva/detallereserva-principal/detallereserva-principal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPrincipalComponent
+    LoginPrincipalComponent,
+    DetallereservaPrincipalComponent
     ],
   imports: [
     HttpClientModule,

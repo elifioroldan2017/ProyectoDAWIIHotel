@@ -11,6 +11,7 @@ import { FormHabitacionComponent } from './habitacion/form-habitacion/form-habit
 import { FormTipousuarioComponent } from './tipousuario/form-tipousuario/form-tipousuario.component';
 import { FormUsuarioComponent } from './usuario/form-usuario/form-usuario.component';
 import { HabitacionpisoComponent } from './reserva/habitacionpiso/habitacionpiso.component';
+import { DetallereservaPrincipalComponent } from './reserva/detallereserva-principal/detallereserva-principal.component';
 
 const routes: Routes = [
 
@@ -78,6 +79,10 @@ const routes: Routes = [
   {
     path:'login',
     component: LoginPrincipalComponent
+  },
+  {
+    path:'detallereserva',
+    component: DetallereservaPrincipalComponent
   }
 
 ];

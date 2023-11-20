@@ -4,13 +4,15 @@ import { ReservaPrincipalComponent } from './reserva-principal/reserva-principal
 import { MenuModule } from '../menu/menu.module';
 import { HabitacionpisoComponent } from './habitacionpiso/habitacionpiso.component';
 import { FormsModule } from '@angular/forms';
+import { DetallereservaPrincipalComponent } from './detallereserva-principal/detallereserva-principal.component';
 
 
 
 @NgModule({
   declarations: [
     ReservaPrincipalComponent,
-    HabitacionpisoComponent
+    HabitacionpisoComponent,
+    DetallereservaPrincipalComponent
   ],
   imports: [
     CommonModule,

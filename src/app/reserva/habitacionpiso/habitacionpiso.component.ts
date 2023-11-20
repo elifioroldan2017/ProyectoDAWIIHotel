@@ -32,4 +32,8 @@ export class HabitacionpisoComponent {
 
     }
 
+    aceptar(){
+      
+    }
+
 }
