@@ -47,14 +47,14 @@ export class DetallereservaPrincipalComponent {
       if (result.isConfirmed) {
         for(var i=0;i<this.detalleReservaReserva.detallereservas.length;i++){
           this.detalleReservaReserva.detallereservas[i].detailId=(i+1)
-          this.detalleReservaReserva.detallereservas[i].checkin="2023-11-19T12:00:00"
-          this.detalleReservaReserva.detallereservas[i].checkout="2023-11-19T12:00:00"
+          this.detalleReservaReserva.detallereservas[i].checkin="2023-11-20T12:00:00"
+          this.detalleReservaReserva.detallereservas[i].checkout="2023-11-20T12:00:00"
         }
         
 
         this.reserva.iduser=2;
         this.reserva.active="A"
-        this.reserva.date= "2023-11-19T12:00:00"
+        this.reserva.date= "2023-11-20T12:00:00"
         this.reserva.details=this.detalleReservaReserva.detallereservas
         console.log(this.reserva)  
         this.reservaService.insertarReserva(this.reserva).subscribe(res=>{
