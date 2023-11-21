@@ -6,6 +6,7 @@ import { Usuario } from '../interface/Usuario';
 import { UsuarioService } from '../usuario.service';
 import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Pasajero } from 'src/app/pasajero/interfaces/Pasajero';
 
 @Component({
   selector: 'app-form-usuario',
@@ -39,6 +40,9 @@ tipoNombreInvalido(): boolean {
 tipoUsuarioInvalido(): boolean {
   return this.formUser?.controls['usertpe'].value === 0;
 }
+
+pasajeros:Pasajero[]=[]
+
   constructor(private tipousuarioService:TipousuarioService,private pasajeroService:PasajeroService,private routes:Router ,private activateRoute:ActivatedRoute,
     private usuarioService:UsuarioService){
       var param=this.activateRoute.snapshot.params["id"]
@@ -50,14 +54,17 @@ tipoUsuarioInvalido(): boolean {
           this.usuario= res;
         })
       }
+      this.listarPersonasSinusuario();
   }
 
   get tipousuarios(){
     return this.tipousuarioService.tipousuarios
   }
 
-  get pasajeros(){
-    return this.pasajeroService.pasajeros
+  listarPersonasSinusuario(){
+    return this.usuarioService.listarPersonasSinUsuarios().subscribe(res=>{
+      this.pasajeros=res
+    })
   }
   
   regresar(){

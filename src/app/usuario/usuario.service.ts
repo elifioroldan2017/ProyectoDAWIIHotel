@@ -3,11 +3,13 @@ import { Usuario } from './interface/Usuario';
 import { HttpClient } from '@angular/common/http';
 import urlBase from '../contantes';
 import {Observable} from "rxjs"
+import { Pasajero } from '../pasajero/interfaces/Pasajero';
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
  private _usuarios:Usuario[]=[]
+ private _pasajero:Pasajero[]=[]
 
  get usuarios():Usuario[]{
   return [...this._usuarios]
@@ -40,6 +42,16 @@ export class UsuarioService {
     this._usuarios=res;
    }) 
  }
+
+
+ listarPersonasSinUsuarios(){
+  return this._http.get<Pasajero[]>(urlBase+"/passenger/listWithoutUser")
+ }
+
+ get pasajeros(){
+  return [...this._pasajero];
+ }
+
 
 
   constructor(private _http:HttpClient) {
