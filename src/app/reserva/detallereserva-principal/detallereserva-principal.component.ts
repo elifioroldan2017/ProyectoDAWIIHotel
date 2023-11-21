@@ -35,6 +35,25 @@ export class DetallereservaPrincipalComponent {
     return this.detalleReservaReserva.detallereservas
   }
 
+  fechaActual(){
+      const fechaActual = new Date();
+
+      // Formatea la fecha
+      const año = fechaActual.getFullYear();
+      const mes = String(fechaActual.getMonth() + 1).padStart(2, '0'); // El mes es 0 indexado, por eso se suma 1
+      const dia = String(fechaActual.getDate()).padStart(2, '0');
+
+      // Formatea la hora
+      const hora = String(fechaActual.getHours()).padStart(2, '0');
+      const minutos = String(fechaActual.getMinutes()).padStart(2, '0');
+      const segundos = String(fechaActual.getSeconds()).padStart(2, '0');
+
+      // Crea la cadena de fecha en el formato deseado
+      const fechaFormateada = `${año}-${mes}-${dia}T${hora}:${minutos}:${segundos}`;
+
+      return fechaFormateada;
+  }
+
   guardar(){
     Swal.fire({
       title: '¿Estás seguro?',
@@ -56,7 +75,7 @@ export class DetallereservaPrincipalComponent {
 
         this.reserva.iduser=this.loginService.oUser.userId;
         this.reserva.active="A"
-        this.reserva.date= "2023-11-20T12:00:00"
+        this.reserva.date= this.fechaActual()
         this.reserva.details=this.detalleReservaReserva.detallereservas
         console.log(this.reserva)  
         this.reservaService.insertarReserva(this.reserva).subscribe(res=>{
