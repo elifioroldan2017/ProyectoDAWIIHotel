@@ -17,7 +17,7 @@ const routes: Routes = [
 
   {
     path:'',
-    component: PasajeroPrincipalComponent,
+    component: LoginPrincipalComponent,
     pathMatch:"full"
   },
   {
