@@ -95,10 +95,7 @@ tipoUsuarioInvalido(): boolean {
             }
           })
         }
-
       }
     });
-
-  
   }
 }
