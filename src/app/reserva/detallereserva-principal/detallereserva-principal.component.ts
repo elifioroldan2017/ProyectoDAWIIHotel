@@ -54,6 +54,15 @@ export class DetallereservaPrincipalComponent {
       return fechaFormateada;
   }
 
+ 
+
+   convertirFormatoFecha(fechaEnFormatoYYYYMMDD:string) {
+    // Agregar la hora y minutos a la fecha
+    const fechaConHora = fechaEnFormatoYYYYMMDD + 'T12:00:00';
+  
+    return fechaConHora;
+  }
+
   guardar(){
     Swal.fire({
       title: '¿Estás seguro?',
@@ -68,8 +77,8 @@ export class DetallereservaPrincipalComponent {
       if (result.isConfirmed) {
         for(var i=0;i<this.detalleReservaReserva.detallereservas.length;i++){
           this.detalleReservaReserva.detallereservas[i].detailId=(i+1)
-          this.detalleReservaReserva.detallereservas[i].checkin="2023-11-20T12:00:00"
-          this.detalleReservaReserva.detallereservas[i].checkout="2023-11-20T12:00:00"
+          this.detalleReservaReserva.detallereservas[i].checkin=this.convertirFormatoFecha(this.detalleReservaReserva.detallereservas[i].checkin)
+          this.detalleReservaReserva.detallereservas[i].checkout=this.convertirFormatoFecha(this.detalleReservaReserva.detallereservas[i].checkout)
         }
         
 
