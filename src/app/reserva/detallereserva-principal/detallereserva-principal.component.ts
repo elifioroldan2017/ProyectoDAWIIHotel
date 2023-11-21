@@ -3,6 +3,7 @@ import { DetallereservaService } from '../detallereserva.service';
 import Swal from 'sweetalert2';
 import Reserva from '../interfaces/Reserva';
 import { ReservaService } from '../reserva.service';
+import { LoginPageAppService } from 'src/app/login-page-app.service';
 @Component({
   selector: 'app-detallereserva-principal',
   templateUrl: './detallereserva-principal.component.html',
@@ -16,7 +17,8 @@ export class DetallereservaPrincipalComponent {
     active:"A",
     details:[],
   }
-  constructor(private detalleReservaReserva:DetallereservaService,private reservaService:ReservaService){
+  constructor(private detalleReservaReserva:DetallereservaService,private reservaService:ReservaService,
+    private loginService:LoginPageAppService){
     this.calcularTotal()
   }
 
@@ -52,7 +54,7 @@ export class DetallereservaPrincipalComponent {
         }
         
 
-        this.reserva.iduser=2;
+        this.reserva.iduser=this.loginService.oUser.userId;
         this.reserva.active="A"
         this.reserva.date= "2023-11-20T12:00:00"
         this.reserva.details=this.detalleReservaReserva.detallereservas
