@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { LoginPageAppService } from 'src/app/login-page-app.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,5 +9,11 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 })
 export class MenuComponent {
+
+  nombreCompleto:string=""
+  constructor(private loginService:LoginPageAppService)
+  {
+    this.nombreCompleto= this.loginService.oUser.name+" "+this.loginService.oUser.lastname1+" "+this.loginService.oUser.lastname2
+  }
 
 }

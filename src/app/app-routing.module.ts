@@ -4,7 +4,6 @@ import { ReservaPrincipalComponent } from './reserva/reserva-principal/reserva-p
 import { TipousuarioPrincipalComponent } from './tipousuario/tipousuario-principal/tipousuario-principal.component';
 import { UsuarioPrincipalComponent } from './usuario/usuario-principal/usuario-principal.component';
 import { PasajeroPrincipalComponent } from './pasajero/pasajero-principal/pasajero-principal.component';
-import { LoginPrincipalComponent } from './login/login-principal/login-principal.component';
 import { HabitacionPrincipalComponent } from './habitacion/habitacion-principal/habitacion-principal.component';
 import { FormPasajeroComponent } from './pasajero/form-pasajero/form-pasajero.component';
 import { FormHabitacionComponent } from './habitacion/form-habitacion/form-habitacion.component';
@@ -12,12 +11,13 @@ import { FormTipousuarioComponent } from './tipousuario/form-tipousuario/form-ti
 import { FormUsuarioComponent } from './usuario/form-usuario/form-usuario.component';
 import { HabitacionpisoComponent } from './reserva/habitacionpiso/habitacionpiso.component';
 import { DetallereservaPrincipalComponent } from './reserva/detallereserva-principal/detallereserva-principal.component';
+import { LoginPageAppComponent } from './login-page-app/login-page-app.component';
 
 const routes: Routes = [
 
   {
     path:'',
-    component: LoginPrincipalComponent,
+    component: LoginPageAppComponent,
     pathMatch:"full"
   },
   {
@@ -78,7 +78,7 @@ const routes: Routes = [
   },
   {
     path:'login',
-    component: LoginPrincipalComponent
+    component: LoginPageAppComponent
   },
   {
     path:'detallereserva',
