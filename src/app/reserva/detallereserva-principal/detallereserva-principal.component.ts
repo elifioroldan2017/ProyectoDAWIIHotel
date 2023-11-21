@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import Reserva from '../interfaces/Reserva';
 import { ReservaService } from '../reserva.service';
 import { LoginPageAppService } from 'src/app/login-page-app.service';
+import DetalleReserva from '../interfaces/DetalleReserva';
 @Component({
   selector: 'app-detallereserva-principal',
   templateUrl: './detallereserva-principal.component.html',
@@ -17,6 +18,7 @@ export class DetallereservaPrincipalComponent {
     active:"A",
     details:[],
   }
+  detalle:DetalleReserva[]=[]
   constructor(private detalleReservaReserva:DetallereservaService,private reservaService:ReservaService,
     private loginService:LoginPageAppService){
     this.calcularTotal()
@@ -75,17 +77,18 @@ export class DetallereservaPrincipalComponent {
       cancelButtonText:"No"
     }).then((result) => {
       if (result.isConfirmed) {
-        for(var i=0;i<this.detalleReservaReserva.detallereservas.length;i++){
-          this.detalleReservaReserva.detallereservas[i].detailId=(i+1)
-          this.detalleReservaReserva.detallereservas[i].checkin=this.convertirFormatoFecha(this.detalleReservaReserva.detallereservas[i].checkin)
-          this.detalleReservaReserva.detallereservas[i].checkout=this.convertirFormatoFecha(this.detalleReservaReserva.detallereservas[i].checkout)
+        this.detalle = JSON.parse(JSON.stringify(this.detalleReservaReserva.detallereservas));
+        for(var i=0;i<this.detalle.length;i++){
+          this.detalle[i].detailId=(i+1)
+          this.detalle[i].checkin=this.convertirFormatoFecha(this.detalle[i].checkin)
+          this.detalle[i].checkout=this.convertirFormatoFecha(this.detalle[i].checkout)
         }
         
 
         this.reserva.iduser=this.loginService.oUser.userId;
         this.reserva.active="A"
         this.reserva.date= this.fechaActual()
-        this.reserva.details=this.detalleReservaReserva.detallereservas
+        this.reserva.details=this.detalle
         console.log(this.reserva)  
         this.reservaService.insertarReserva(this.reserva).subscribe(res=>{
 
