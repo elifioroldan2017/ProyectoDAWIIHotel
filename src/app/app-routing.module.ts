@@ -12,6 +12,7 @@ import { FormUsuarioComponent } from './usuario/form-usuario/form-usuario.compon
 import { HabitacionpisoComponent } from './reserva/habitacionpiso/habitacionpiso.component';
 import { DetallereservaPrincipalComponent } from './reserva/detallereserva-principal/detallereserva-principal.component';
 import { LoginPageAppComponent } from './login-page-app/login-page-app.component';
+import { AuthGuard } from './loginPageApp/guards/auth.guard';
 
 const routes: Routes = [
 
@@ -22,59 +23,73 @@ const routes: Routes = [
   },
   {
     path:'pasajero',
-    component: PasajeroPrincipalComponent
+    component: PasajeroPrincipalComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'pasajero/agregar',
-    component: FormPasajeroComponent
+    component: FormPasajeroComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'pasajero/editar/:id',
-    component: FormPasajeroComponent
+    component: FormPasajeroComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'habitacion',
-    component: HabitacionPrincipalComponent
+    component: HabitacionPrincipalComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'habitacion/agregar',
-    component: FormHabitacionComponent
+    component: FormHabitacionComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'habitacion/editar/:id',
-    component: FormHabitacionComponent
+    component: FormHabitacionComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'reserva',
-    component: ReservaPrincipalComponent
+    component: ReservaPrincipalComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'reserva/piso/:id',
-    component: HabitacionpisoComponent
+    component: HabitacionpisoComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'tipousuario',
-    component: TipousuarioPrincipalComponent
+    component: TipousuarioPrincipalComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'tipousuario/editar/:id',
-    component: FormTipousuarioComponent
+    component: FormTipousuarioComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'tipousuario/agregar',
-    component: FormTipousuarioComponent
+    component: FormTipousuarioComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'usuario',
-    component: UsuarioPrincipalComponent
+    component: UsuarioPrincipalComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'usuario/agregar',
-    component: FormUsuarioComponent
+    component: FormUsuarioComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'usuario/editar/:id',
-    component: FormUsuarioComponent
+    component: FormUsuarioComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'login',
@@ -82,7 +97,8 @@ const routes: Routes = [
   },
   {
     path:'detallereserva',
-    component: DetallereservaPrincipalComponent
+    component: DetallereservaPrincipalComponent,
+    canActivate:[AuthGuard]
   }
 
 ];

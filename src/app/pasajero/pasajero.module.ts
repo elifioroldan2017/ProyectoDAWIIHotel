@@ -8,6 +8,7 @@ import {FormsModule} from "@angular/forms"
 import { CustomMinDirective } from './form-pasajero/custom-min.directive';
 import { MenuModule } from '../menu/menu.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AuthGuard } from '../loginPageApp/guards/auth.guard';
 
 
 
@@ -27,7 +28,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgxPaginationModule
   ],
   providers:[
-    PasajeroService
+    PasajeroService,
+    { provide: 'AuthService', useValue: AuthGuard },
+    { provide: 'CanActivateFn', useValue: AuthGuard },
   ]
 })
 export class PasajeroModule { }

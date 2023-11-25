@@ -5,6 +5,7 @@ import { MenuModule } from '../menu/menu.module';
 import { HabitacionpisoComponent } from './habitacionpiso/habitacionpiso.component';
 import { FormsModule } from '@angular/forms';
 import { DetallereservaPrincipalComponent } from './detallereserva-principal/detallereserva-principal.component';
+import { AuthGuard } from '../loginPageApp/guards/auth.guard';
 
 
 
@@ -20,7 +21,9 @@ import { DetallereservaPrincipalComponent } from './detallereserva-principal/det
     FormsModule
   ],
   providers:[
-    DatePipe 
+    DatePipe ,
+    { provide: 'AuthService', useValue: AuthGuard },
+    { provide: 'CanActivateFn', useValue: AuthGuard },
   ]
 })
 export class ReservaModule { }
