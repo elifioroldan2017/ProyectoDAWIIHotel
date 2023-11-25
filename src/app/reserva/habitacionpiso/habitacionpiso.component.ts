@@ -23,6 +23,7 @@ export class HabitacionpisoComponent {
       roomId:0,
       checkin:new Date().toISOString().split('T')[0],
       checkout:new Date().toISOString().split('T')[0],
+      pricepornight:0,
       price:0,
       note:"",
       days:1,
@@ -95,6 +96,7 @@ export class HabitacionpisoComponent {
             // Las fechas son válidas, puedes continuar con el proceso de guardado
             const btnCerrar = this.el.nativeElement.querySelector('#btnCerrar');
             this.detallereserva.days = this.calcularDiferenciaEnDias(fechaInicio,fechaFin)
+            this.detallereserva.pricepornight= this._precio;
             this.detallereserva.price=this._precio * this.detallereserva.days
             this.detallereserva.roomId=this._idhabitacion
             this.detallereserva.roomNumber=this._numerohabitacion

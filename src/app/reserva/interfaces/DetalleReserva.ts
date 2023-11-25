@@ -3,6 +3,7 @@ export default interface DetalleReserva {
     roomId: number;
     checkin: string;
     checkout: string;
+    pricepornight:number;
     price: number;
     note: string;
     days:number;
