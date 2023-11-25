@@ -7,6 +7,7 @@ import { FormUsuarioComponent } from './form-usuario/form-usuario.component';
 import {FormsModule} from "@angular/forms"
 import { CustomMinDirective } from './form-usuario/custom-min.directive';
 import { MenuModule } from '../menu/menu.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MenuModule } from '../menu/menu.module';
   imports: [
     FormsModule,
     CommonModule,
-    MenuModule
+    MenuModule,
+    NgxPaginationModule
   ],
   providers:[UsuarioService]
 })

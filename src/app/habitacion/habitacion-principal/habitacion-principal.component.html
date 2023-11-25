@@ -8,10 +8,12 @@
 </div>
 <form (ngSubmit)="buscarHabitacion()"  >
     <div class="input-group mb-3 mt-3">
-        <input type="text" class="form-control"
+        <input type="text" class="form-control" (keyup)="cambiar($event)"
         [(ngModel)]="numerohabitacion"  name="numerohabitacion"
         placeholder="Ingrese numero habitacion" aria-label="Numero Habitacion" aria-describedby="button-addon2">
-        <button class="btn btn-outline-dark" type="submit" id="button-addon2">Buscar</button>
+        <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
+        <button class="btn btn-outline-dark" (click)="limpiar()" type="submit" id="button-addon2">Limpiar</button>
+
      </div>
 </form>
 <app-tabla-habitacion></app-tabla-habitacion>

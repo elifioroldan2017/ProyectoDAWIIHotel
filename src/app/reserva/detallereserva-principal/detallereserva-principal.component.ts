@@ -5,6 +5,7 @@ import Reserva from '../interfaces/Reserva';
 import { ReservaService } from '../reserva.service';
 import { LoginPageAppService } from 'src/app/login-page-app.service';
 import DetalleReserva from '../interfaces/DetalleReserva';
+import { UsuarioService } from 'src/app/usuario/usuario.service';
 @Component({
   selector: 'app-detallereserva-principal',
   templateUrl: './detallereserva-principal.component.html',
@@ -20,7 +21,7 @@ export class DetallereservaPrincipalComponent {
   }
   detalle:DetalleReserva[]=[]
   constructor(private detalleReservaReserva:DetallereservaService,private reservaService:ReservaService,
-    private loginService:LoginPageAppService){
+    private loginService:LoginPageAppService,private usuarioService:UsuarioService){
     this.calcularTotal()
   }
 
@@ -65,6 +66,10 @@ export class DetallereservaPrincipalComponent {
     return fechaConHora;
   }
 
+  eliminar(id:number){
+    this.detalleReservaReserva.eliminarDetalle(id)
+  }
+
   guardar(){
     Swal.fire({
       title: '¿Estás seguro?',
@@ -82,10 +87,9 @@ export class DetallereservaPrincipalComponent {
           this.detalle[i].detailId=(i+1)
           this.detalle[i].checkin=this.convertirFormatoFecha(this.detalle[i].checkin)
           this.detalle[i].checkout=this.convertirFormatoFecha(this.detalle[i].checkout)
-        }
-        
-
-        this.reserva.iduser=this.loginService.oUser.userId;
+        }       
+        var data = this.usuarioService.obtenerUsuarioDesdeStorage()
+        this.reserva.iduser=data.userId
         this.reserva.active="A"
         this.reserva.date= this.fechaActual()
         this.reserva.details=this.detalle

@@ -92,6 +92,8 @@ pasajeros:Pasajero[]=[]
               this.routes.navigate(["usuario"])
               this.usuarioService.listarUsuarios();
             }
+          },(err)=>{
+             Swal.fire('Ocurrio un error', err.error, 'error');
           })
         }else{
           this.usuarioService.editarUsuario(this.usuario).subscribe(res=>{
@@ -100,7 +102,9 @@ pasajeros:Pasajero[]=[]
               this.routes.navigate(["usuario"])
               this.usuarioService.listarUsuarios();
             }
-          })
+          },(err)=>{
+            Swal.fire('Ocurrio un error', err.error, 'error');
+         })
         }
       }
     });

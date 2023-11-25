@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import urlBase from '../contantes';
 import {Observable} from "rxjs"
 import { Pasajero } from '../pasajero/interfaces/Pasajero';
+import UserLogin from '../login-page-app/interfaces/UserLogin';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,8 +12,25 @@ export class UsuarioService {
  private _usuarios:Usuario[]=[]
  private _pasajero:Pasajero[]=[]
 
+  nombreusuario:string=""
+  totalLength:any;
+  page:number=1;
+
  get usuarios():Usuario[]{
   return [...this._usuarios]
+ }
+
+ guardarUsuarioEnStorage(usuario: UserLogin): void {
+  localStorage.setItem('usuario', JSON.stringify(usuario));
+ }
+
+ obtenerUsuarioDesdeStorage(): any {
+  const usuarioString = localStorage.getItem('usuario');
+  return usuarioString ? JSON.parse(usuarioString) : null;
+} 
+
+ eliminarUsuarioDelStorage(): void {
+  localStorage.removeItem('usuario');
  }
 
  listarUsuarios(){

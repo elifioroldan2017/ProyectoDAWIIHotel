@@ -9,9 +9,11 @@
 <form (ngSubmit)="buscarUsuario()"  >
     <div class="input-group mb-3 mt-3">
         <input type="text" class="form-control"
+        (keyup)="cambiar($event)"
         [(ngModel)]="nombreusuario"  name="nombreusuario"
         placeholder="Ingrese nombre usuario" aria-label="Nombre Usuario" aria-describedby="button-addon2">
-        <button class="btn btn-outline-dark" type="submit" id="button-addon2">Buscar</button>
+        <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
+        <button class="btn btn-outline-dark" (click)="limpiar()" type="button" id="button-addon2">Limpiar</button>
      </div>
 </form>
 <app-tabla-usuario></app-tabla-usuario>

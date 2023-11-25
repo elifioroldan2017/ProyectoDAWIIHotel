@@ -5,4 +5,6 @@ export default interface DetalleReserva {
     checkout: string;
     price: number;
     note: string;
+    days:number;
+    roomNumber:string;
   }

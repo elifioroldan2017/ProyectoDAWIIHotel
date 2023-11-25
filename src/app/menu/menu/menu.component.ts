@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginPageAppService } from 'src/app/login-page-app.service';
+import { UsuarioService } from 'src/app/usuario/usuario.service';
 
 @Component({
   selector: 'app-menu',
@@ -11,9 +13,16 @@ import { LoginPageAppService } from 'src/app/login-page-app.service';
 export class MenuComponent {
 
   nombreCompleto:string=""
-  constructor(private loginService:LoginPageAppService)
+  constructor(private loginService:LoginPageAppService,private usuarioService:UsuarioService,private router:Router)
   {
-    this.nombreCompleto= this.loginService.oUser.name+" "+this.loginService.oUser.lastname1+" "+this.loginService.oUser.lastname2
+  
+    var data = this.usuarioService.obtenerUsuarioDesdeStorage()
+    this.nombreCompleto= data.name+" "+data.lastname1+" "+data.lastname2
+  }
+
+  cerrarSesion(){
+    this.usuarioService.eliminarUsuarioDelStorage();
+    this.router.navigate(["/"])
   }
 
 }
