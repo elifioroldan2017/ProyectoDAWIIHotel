@@ -121,7 +121,8 @@ export class DetallereservaPrincipalComponent {
 
           
             Swal.fire('Exito!', 'Se  guardó los cambios correctamente', 'success');
-            
+            this.detalleReservaReserva.limpiarDetalle()
+            this.calcularTotal()
           })
       }
     });
