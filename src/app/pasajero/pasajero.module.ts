@@ -7,6 +7,7 @@ import { FormPasajeroComponent } from './form-pasajero/form-pasajero.component';
 import {FormsModule} from "@angular/forms"
 import { CustomMinDirective } from './form-pasajero/custom-min.directive';
 import { MenuModule } from '../menu/menu.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -22,7 +23,8 @@ import { MenuModule } from '../menu/menu.module';
   imports: [
     FormsModule,
     CommonModule,
-    MenuModule
+    MenuModule,
+    NgxPaginationModule
   ],
   providers:[
     PasajeroService

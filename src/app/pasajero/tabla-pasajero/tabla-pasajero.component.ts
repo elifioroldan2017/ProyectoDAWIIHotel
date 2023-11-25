@@ -10,7 +10,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./tabla-pasajero.component.css']
 })
 export class TablaPasajeroComponent {
-
+  totalLength:any;
+  page:number=1;
   get pasajeros(){
     return [...this.pasajeroService.pasajeros]
   }
