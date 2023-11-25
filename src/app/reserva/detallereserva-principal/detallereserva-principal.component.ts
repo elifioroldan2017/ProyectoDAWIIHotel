@@ -67,7 +67,23 @@ export class DetallereservaPrincipalComponent {
   }
 
   eliminar(id:number){
-    this.detalleReservaReserva.eliminarDetalle(id)
+
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta seguro de eliminar el registro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+      cancelButtonText:"No"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.detalleReservaReserva.eliminarDetalle(id)
+      }
+    });
+
+
   }
 
   guardar(){
