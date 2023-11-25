@@ -80,6 +80,7 @@ export class DetallereservaPrincipalComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.detalleReservaReserva.eliminarDetalle(id)
+        this.calcularTotal()
       }
     });
 
