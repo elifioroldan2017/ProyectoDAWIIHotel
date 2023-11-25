@@ -16,8 +16,9 @@
     padding-left: 1rem;
   }
   .nav > .nav-header > .nav-title {
-    font-size: 22px;
+    font-size: 16px;
     color: #fff;
+    font-weight: bold;
   }
   .nav > .nav-list {
     display: flex;
