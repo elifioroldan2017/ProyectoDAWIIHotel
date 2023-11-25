@@ -88,6 +88,12 @@ export class DetallereservaPrincipalComponent {
   }
 
   guardar(){
+
+    if(this.detalleReservaReserva.detallereservas.length==0){
+      Swal.fire('Error', 'Debe ingresar al menos un detalle para guardar la reserva', 'error');
+      return;
+    }
+
     Swal.fire({
       title: '¿Estás seguro?',
       text: 'Esta seguro de guardar los cambios?',
