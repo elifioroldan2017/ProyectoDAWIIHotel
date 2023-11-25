@@ -13,7 +13,8 @@ import { UsuarioService } from 'src/app/usuario/usuario.service';
 export class MenuComponent {
 
   nombreCompleto:string=""
-  constructor(private loginService:LoginPageAppService,private usuarioService:UsuarioService,private router:Router)
+  constructor(private loginService:LoginPageAppService,private usuarioService:UsuarioService,private router:Router,
+    private servicioLogin:LoginPageAppService)
   {
   
     var data = this.usuarioService.obtenerUsuarioDesdeStorage()
@@ -22,6 +23,7 @@ export class MenuComponent {
 
   cerrarSesion(){
     this.usuarioService.eliminarUsuarioDelStorage();
+    this.servicioLogin.oUser=null
     this.router.navigate(["/"])
   }
 
