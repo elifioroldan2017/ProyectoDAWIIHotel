@@ -26,7 +26,7 @@ export class DetallereservaPrincipalComponent {
   visibleReporte:boolean=false
   visibleGuardar:boolean=true
   visibleOperaciones:boolean=true
-
+  copiadetalle:DetalleReserva[]=[]
   detalle:DetalleReserva[]=[]
   constructor(private detalleReservaReserva:DetallereservaService,private reservaService:ReservaService,
     private loginService:LoginPageAppService,private usuarioService:UsuarioService){
@@ -131,7 +131,8 @@ export class DetallereservaPrincipalComponent {
             this.visibleGuardar=false
             this.visibleReporte=true
             this.visibleOperaciones=false
-            //this.detalleReservaReserva.limpiarDetalle()
+            this.copiadetalle=this.detalleReservaReserva.detallereservas
+            this.detalleReservaReserva.limpiarDetalle()
             this.calcularTotal()
           })
       }
@@ -155,8 +156,8 @@ export class DetallereservaPrincipalComponent {
   generarPDF(): void {
     const doc = new jsPDF();
     const arraydet:any= []
-    for(var i=0;i<this.detalleReservaReserva.detallereservas.length;i++){
-      var obj= this.detalleReservaReserva.detallereservas[i]
+    for(var i=0;i<this.copiadetalle.length;i++){
+      var obj= this.copiadetalle[i]
       var array= [obj.roomNumber,this.convertDate(obj.checkin)+" al "+this.convertDate(obj.checkout),obj.days,obj.pricepornight,obj.price]
       arraydet.push(array)
     }
