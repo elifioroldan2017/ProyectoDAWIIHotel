@@ -13,6 +13,7 @@ import { HabitacionpisoComponent } from './reserva/habitacionpiso/habitacionpiso
 import { DetallereservaPrincipalComponent } from './reserva/detallereserva-principal/detallereserva-principal.component';
 import { LoginPageAppComponent } from './login-page-app/login-page-app.component';
 import { AuthGuard } from './loginPageApp/guards/auth.guard';
+import { MisReservasPageComponent } from './reserva/mis-reservas-page/mis-reservas-page.component';
 
 const routes: Routes = [
 
@@ -54,6 +55,11 @@ const routes: Routes = [
   {
     path:'reserva',
     component: ReservaPrincipalComponent,
+    canActivate:[AuthGuard]
+  },
+  {
+    path:'misreserva',
+    component: MisReservasPageComponent,
     canActivate:[AuthGuard]
   },
   {

@@ -5,6 +5,7 @@ import Login from './interfaces/Login';
 import Swal from 'sweetalert2';
 import UserLogin from './interfaces/UserLogin';
 import { UsuarioService } from '../usuario/usuario.service';
+import { DetallereservaService } from '../reserva/detallereserva.service';
 @Component({
   selector: 'app-login-page-app',
   templateUrl: './login-page-app.component.html',
@@ -18,7 +19,8 @@ export class LoginPageAppComponent {
 
 
 
-  constructor(private router:Router,private servicioLogin:LoginPageAppService,private usuarioService:UsuarioService){
+  constructor(private router:Router,private servicioLogin:LoginPageAppService,private usuarioService:UsuarioService,
+    private detalleReserva:DetallereservaService){
 
   }
 
@@ -30,6 +32,7 @@ export class LoginPageAppComponent {
       Swal.fire('Bienvenido!', 'Bievenido al Sistema '+nombrecompleto, 'success');
       this.servicioLogin.oUser=res;
       this.usuarioService.guardarUsuarioEnStorage(this.servicioLogin.oUser)
+      this.detalleReserva.limpiarDetalle()
       this.router.navigate(["/pasajero"])
     },(error) => {
       Swal.fire('Error', 'Usuario y/o contraseña incorrecta', 'error');

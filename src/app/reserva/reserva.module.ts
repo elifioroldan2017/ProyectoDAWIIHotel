@@ -6,6 +6,8 @@ import { HabitacionpisoComponent } from './habitacionpiso/habitacionpiso.compone
 import { FormsModule } from '@angular/forms';
 import { DetallereservaPrincipalComponent } from './detallereserva-principal/detallereserva-principal.component';
 import { AuthGuard } from '../loginPageApp/guards/auth.guard';
+import { MisReservasPageComponent } from './mis-reservas-page/mis-reservas-page.component';
+import { MisReservasTablaComponent } from './mis-reservas-tabla/mis-reservas-tabla.component';
 
 
 
@@ -13,7 +15,9 @@ import { AuthGuard } from '../loginPageApp/guards/auth.guard';
   declarations: [
     ReservaPrincipalComponent,
     HabitacionpisoComponent,
-    DetallereservaPrincipalComponent
+    DetallereservaPrincipalComponent,
+    MisReservasPageComponent,
+    MisReservasTablaComponent
   ],
   imports: [
     CommonModule,
