@@ -136,32 +136,33 @@ export class DetallereservaPrincipalComponent {
             const blobPDF = this.generarPDFBlob();
 
             blobPDF.arrayBuffer().then((arrayBuffer:any) => {
-              const arrayDeBytes = new Uint8Array(arrayBuffer);
-              
+              const arrayDeBytes = new Uint8Array(arrayBuffer); 
               const listabyte = [Array.from(arrayDeBytes)];
+                            
               
-              console.log(blobPDF)
-              
-              
-                             console.log(listabyte)
+              var usuario= this.usuarioService.obtenerUsuarioDesdeStorage()
               
                           const datosParaEnviar:Correo = {
-                            correosAEnviar: ['elifioroldan@hotmail.com',],
-                            asunto: 'Asunto del correo',
-                            contenido: 'Contenido del correo',
+                            correosAEnviar: [usuario.email,],
+                            asunto: 'Confirmación de Reserva en Hotel Premier',
+                            contenido: `
+                            ¡Tu reserva en Hotel Premier se ha realizado correctamente! Adjunto encontrarás el comprobante de reserva.
+                            `
+                            
+                            ,
                             nombresArchivos: ['reportereserva.pdf'],
                             listabyte:listabyte as unknown as Uint8Array[],  
               
                           };
                         
-                        /*  this.reservaService.enviarCorreo(datosParaEnviar).subscribe(res=>{
-              
+                          this.reservaService.enviarCorreo(datosParaEnviar).subscribe(res=>{
+                            console.error('Se envio correctamente');
                            },
                            
                            error => {
                             console.error('Error en la solicitud:', error);
                           }
-                          )*/
+                          )
 
 
               //
@@ -203,23 +204,18 @@ export class DetallereservaPrincipalComponent {
     const doc = new jsPDF();
     const arraydet: any = [];
    var usuario= this.usuarioService.obtenerUsuarioDesdeStorage()
-  // Agrega la información adicional
-  const informacionAdicional = [
-    ['Nombre Completo', usuario.name+" "+usuario.lastname1+" "+usuario.lastname2],
-    ['Usuario', usuario.username],
-    ['Fecha de Reserva',new Date().toLocaleDateString()],
-    ['Email', usuario.email]
-  ];
 
 
+    var total=0;
     for (var i = 0; i < this.copiadetalle.length; i++) {
       var obj = this.copiadetalle[i];
       var array = [obj.roomNumber, this.convertDate(obj.checkin) + " al " + this.convertDate(obj.checkout), obj.days, obj.pricepornight, obj.price];
+      total+=  obj.price
       arraydet.push(array);
     }
   
     const data = arraydet;
-    const columns = ['N° Habitacion', 'Fechas', 'Dias', 'Precio Por Noche', 'Subtotal'];
+    const columns = ['Numero Habitacion', 'Fechas', 'Dias', 'Precio Por Noche', 'Subtotal'];
     const titulo = "Reporte de Reserva";
   
     const pageSize = doc.internal.pageSize;
@@ -229,6 +225,14 @@ export class DetallereservaPrincipalComponent {
     const columnWidth = pageSize.width / 2; // Divide la página en dos columnas
     const columnMargin = 10; // Margen entre las dos columnas
     doc.setFontSize(10); // Ajusta el tamaño de letra solo para esta línea
+      // Agrega la información adicional
+  const informacionAdicional = [
+    ['Nombre Completo', usuario.name+" "+usuario.lastname1+" "+usuario.lastname2],
+    ['Usuario', usuario.username],
+    ['Fecha de Reserva',new Date().toLocaleDateString()],
+    ['Email', usuario.email],
+    ['Total Pagar', "S/"+total],
+  ];
     informacionAdicional.forEach((info, index) => {
       const infoText = info.join(': ');
       const xPos = index % 2 === 0 ? 20 : columnWidth + columnMargin;
@@ -238,16 +242,18 @@ export class DetallereservaPrincipalComponent {
 
     autoTable(doc, {
       head: [columns],
-      startY: 44, 
+      startY: 55, 
       body: data,
       didDrawPage: function (data) {
         doc.setFontSize(14); // Ajusta el tamaño de letra solo para esta línea
+        doc.setFont('helvetica', 'bold');
         doc.text(titulo, x, y);
       },
       didDrawCell: function (data) {
       }
     });
-  
+    doc.setFont('helvetica', 'normal');
+
     const pdfBytes = doc.output();
   
     const blobArchivo = new Blob([pdfBytes], { type: 'application/pdf' });
