@@ -1,1 +1,19 @@
-<p>mis-reservas-tabla works!</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id Reserva</th>
+            <th>Fecha</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let reserva of reservas |paginate:{itemsPerPage:10,currentPage:page,totalItems:totalLength}">
+            <td>{{reserva.reservationId}}</td>
+            <td>{{reserva.date | date:'dd/MM/yyyy'}}</td>
+            <td>S/{{reserva.total}}</td>
+        </tr>
+    </tbody>
+</table>
+<div class="pagination">
+    <pagination-controls (pageChange)="cambiar($event)" ></pagination-controls>
+  </div>

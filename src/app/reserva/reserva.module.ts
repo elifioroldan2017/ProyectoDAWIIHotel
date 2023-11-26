@@ -8,6 +8,7 @@ import { DetallereservaPrincipalComponent } from './detallereserva-principal/det
 import { AuthGuard } from '../loginPageApp/guards/auth.guard';
 import { MisReservasPageComponent } from './mis-reservas-page/mis-reservas-page.component';
 import { MisReservasTablaComponent } from './mis-reservas-tabla/mis-reservas-tabla.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -22,7 +23,9 @@ import { MisReservasTablaComponent } from './mis-reservas-tabla/mis-reservas-tab
   imports: [
     CommonModule,
     MenuModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
+
   ],
   providers:[
     DatePipe ,
