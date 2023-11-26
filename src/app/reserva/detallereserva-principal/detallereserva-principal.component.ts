@@ -9,6 +9,7 @@ import { UsuarioService } from 'src/app/usuario/usuario.service';
 import jsPDF from 'jspdf';
 import { DatePipe } from '@angular/common';
 import autoTable from 'jspdf-autotable'
+import Correo from '../interfaces/Correo';
 
 @Component({
   selector: 'app-detallereserva-principal',
@@ -49,17 +50,14 @@ export class DetallereservaPrincipalComponent {
   fechaActual(){
       const fechaActual = new Date();
 
-      // Formatea la fecha
       const año = fechaActual.getFullYear();
       const mes = String(fechaActual.getMonth() + 1).padStart(2, '0'); // El mes es 0 indexado, por eso se suma 1
       const dia = String(fechaActual.getDate()).padStart(2, '0');
 
-      // Formatea la hora
       const hora = String(fechaActual.getHours()).padStart(2, '0');
       const minutos = String(fechaActual.getMinutes()).padStart(2, '0');
       const segundos = String(fechaActual.getSeconds()).padStart(2, '0');
 
-      // Crea la cadena de fecha en el formato deseado
       const fechaFormateada = `${año}-${mes}-${dia}T${hora}:${minutos}:${segundos}`;
 
       return fechaFormateada;
@@ -68,7 +66,6 @@ export class DetallereservaPrincipalComponent {
  
 
    convertirFormatoFecha(fechaEnFormatoYYYYMMDD:string) {
-    // Agregar la hora y minutos a la fecha
     const fechaConHora = fechaEnFormatoYYYYMMDD + 'T12:00:00';
   
     return fechaConHora;
@@ -134,18 +131,58 @@ export class DetallereservaPrincipalComponent {
             this.copiadetalle=this.detalleReservaReserva.detallereservas
             this.detalleReservaReserva.limpiarDetalle()
             this.calcularTotal()
+
+            ///
+            const blobPDF = this.generarPDFBlob();
+
+            blobPDF.arrayBuffer().then((arrayBuffer:any) => {
+              const arrayDeBytes = new Uint8Array(arrayBuffer);
+              
+              const listabyte = [Array.from(arrayDeBytes)];
+              
+              console.log(blobPDF)
+              
+              
+                             console.log(listabyte)
+              
+                          const datosParaEnviar:Correo = {
+                            correosAEnviar: ['elifioroldan@hotmail.com',],
+                            asunto: 'Asunto del correo',
+                            contenido: 'Contenido del correo',
+                            nombresArchivos: ['reportereserva.pdf'],
+                            listabyte:listabyte as unknown as Uint8Array[],  
+              
+                          };
+                           this.reservaService.enviarCorreo(datosParaEnviar).subscribe(res=>{
+              
+                           },
+                           
+                           error => {
+                            console.error('Error en la solicitud:', error);
+                          }
+                          )
+
+
+              //
+            });
+
+
+        
+            
+
+            ///
+
           })
       }
     });
   }
 
    convertDate(fecha:string) {
-    // Crear un objeto Date con la fecha proporcionada
     const fechaObj = new Date(fecha);
   
     // Obtener día, mes y año
     const dia = fechaObj.getDate();
-    const mes = fechaObj.getMonth() + 1; // Los meses en JavaScript son 0-indexados
+    const mes = fechaObj.getMonth() + 1; 
     const anio = fechaObj.getFullYear();
   
     const fechaFormateada = `${dia < 10 ? '0' : ''}${dia}/${mes < 10 ? '0' : ''}${mes}/${anio}`;
@@ -167,31 +204,65 @@ export class DetallereservaPrincipalComponent {
   
     const columns = ['N° Habitación', 'Fechas', 'Dias', 'Precio Por Noche','Subtotal'];
     const titulo="Reporte de Reserva";
-// Calcular la posición central del documento
     const pageSize = doc.internal.pageSize;
     const textWidth = doc.getTextWidth(titulo);
     const x = (pageSize.width - textWidth) / 2;
-    const y = 15; // Puedes ajustar la posición vertical según sea necesario
+    const y = 15; 
 
 
     autoTable(doc,{
       head: [columns], 
-      startY: 30, // Ajustar la posición inicial de la tabla
+      startY: 30, 
       body: data, 
       didDrawPage: function (data) {
-        // Imprimir el título del reporte
         doc.text(titulo, x, y);
 
 
         
         },
       didDrawCell: function (data) {
-        // Si necesitas personalizar celdas individuales, puedes hacerlo aquí
       }
     })
-  
-    // Guardar el PDF
-    doc.save('reporte.pdf');
+      doc.save('reporte.pdf');
   }
+
+  generarPDFBlob(): any {
+    const doc = new jsPDF();
+    const arraydet: any = [];
+  
+    for (var i = 0; i < this.copiadetalle.length; i++) {
+      var obj = this.copiadetalle[i];
+      var array = [obj.roomNumber, this.convertDate(obj.checkin) + " al " + this.convertDate(obj.checkout), obj.days, obj.pricepornight, obj.price];
+      arraydet.push(array);
+    }
+  
+    const data = arraydet;
+    const columns = ['N° Habitación', 'Fechas', 'Dias', 'Precio Por Noche', 'Subtotal'];
+    const titulo = "Reporte de Reserva";
+  
+    const pageSize = doc.internal.pageSize;
+    const textWidth = doc.getTextWidth(titulo);
+    const x = (pageSize.width - textWidth) / 2;
+    const y = 15; 
+  
+    autoTable(doc, {
+      head: [columns],
+      startY: 30, 
+      body: data,
+      didDrawPage: function (data) {
+        doc.text(titulo, x, y);
+      },
+      didDrawCell: function (data) {
+      }
+    });
+  
+    const pdfBytes = doc.output();
+  
+    const blobArchivo = new Blob([pdfBytes], { type: 'application/pdf' });
+    return blobArchivo;
+  }
+
+
+
 }
 
