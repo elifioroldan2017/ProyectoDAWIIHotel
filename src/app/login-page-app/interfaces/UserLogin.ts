@@ -4,5 +4,6 @@ export default interface UserLogin{
     userId:number,
     name:string,
     lastname1:string,
-    lastname2:string
+    lastname2:string,
+    email:string
 }

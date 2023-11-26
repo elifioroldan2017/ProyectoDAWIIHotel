@@ -26,7 +26,7 @@ export class ReservaService {
    }
 
    enviarCorreo(ocorreo:Correo){
-    return this._http.post<Correo>(urlBase+"/correo/enviar",ocorreo); 
+    return this._http.post<Correo>(urlBase+"/mail",ocorreo); 
    }
 
 
