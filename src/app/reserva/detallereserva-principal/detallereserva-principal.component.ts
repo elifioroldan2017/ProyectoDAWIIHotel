@@ -153,14 +153,15 @@ export class DetallereservaPrincipalComponent {
                             listabyte:listabyte as unknown as Uint8Array[],  
               
                           };
-                           this.reservaService.enviarCorreo(datosParaEnviar).subscribe(res=>{
+                        
+                        /*  this.reservaService.enviarCorreo(datosParaEnviar).subscribe(res=>{
               
                            },
                            
                            error => {
                             console.error('Error en la solicitud:', error);
                           }
-                          )
+                          )*/
 
 
               //
@@ -191,45 +192,26 @@ export class DetallereservaPrincipalComponent {
   }
 
   generarPDF(): void {
-    const doc = new jsPDF();
-    const arraydet:any= []
-    for(var i=0;i<this.copiadetalle.length;i++){
-      var obj= this.copiadetalle[i]
-      var array= [obj.roomNumber,this.convertDate(obj.checkin)+" al "+this.convertDate(obj.checkout),obj.days,obj.pricepornight,obj.price]
-      arraydet.push(array)
-    }
-
-
-    const data = arraydet
-  
-    const columns = ['N° Habitación', 'Fechas', 'Dias', 'Precio Por Noche','Subtotal'];
-    const titulo="Reporte de Reserva";
-    const pageSize = doc.internal.pageSize;
-    const textWidth = doc.getTextWidth(titulo);
-    const x = (pageSize.width - textWidth) / 2;
-    const y = 15; 
-
-
-    autoTable(doc,{
-      head: [columns], 
-      startY: 30, 
-      body: data, 
-      didDrawPage: function (data) {
-        doc.text(titulo, x, y);
-
-
-        
-        },
-      didDrawCell: function (data) {
-      }
-    })
-      doc.save('reporte.pdf');
+    var blob:any=  this.generarPDFBlob()
+    var a =document.createElement("a")
+    a.href= URL.createObjectURL(blob)
+    a.download="reporte.pdf"
+    a.click()
   }
 
   generarPDFBlob(): any {
     const doc = new jsPDF();
     const arraydet: any = [];
-  
+   var usuario= this.usuarioService.obtenerUsuarioDesdeStorage()
+  // Agrega la información adicional
+  const informacionAdicional = [
+    ['Nombre Completo', usuario.name+" "+usuario.lastname1+" "+usuario.lastname2],
+    ['Usuario', usuario.username],
+    ['Fecha de Reserva',new Date().toLocaleDateString()],
+    ['Email', usuario.email]
+  ];
+
+
     for (var i = 0; i < this.copiadetalle.length; i++) {
       var obj = this.copiadetalle[i];
       var array = [obj.roomNumber, this.convertDate(obj.checkin) + " al " + this.convertDate(obj.checkout), obj.days, obj.pricepornight, obj.price];
@@ -237,19 +219,29 @@ export class DetallereservaPrincipalComponent {
     }
   
     const data = arraydet;
-    const columns = ['N° Habitación', 'Fechas', 'Dias', 'Precio Por Noche', 'Subtotal'];
+    const columns = ['N° Habitacion', 'Fechas', 'Dias', 'Precio Por Noche', 'Subtotal'];
     const titulo = "Reporte de Reserva";
   
     const pageSize = doc.internal.pageSize;
     const textWidth = doc.getTextWidth(titulo);
     const x = (pageSize.width - textWidth) / 2;
     const y = 15; 
-  
+    const columnWidth = pageSize.width / 2; // Divide la página en dos columnas
+    const columnMargin = 10; // Margen entre las dos columnas
+    doc.setFontSize(10); // Ajusta el tamaño de letra solo para esta línea
+    informacionAdicional.forEach((info, index) => {
+      const infoText = info.join(': ');
+      const xPos = index % 2 === 0 ? 20 : columnWidth + columnMargin;
+      const yPos = y + 10 * Math.floor(index / 2);
+      doc.text(infoText, xPos, yPos+12);
+    });
+
     autoTable(doc, {
       head: [columns],
-      startY: 30, 
+      startY: 44, 
       body: data,
       didDrawPage: function (data) {
+        doc.setFontSize(14); // Ajusta el tamaño de letra solo para esta línea
         doc.text(titulo, x, y);
       },
       didDrawCell: function (data) {
