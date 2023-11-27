@@ -9,14 +9,8 @@ import urlBase from './contantes';
 })
 export class LoginPageAppService {
 
-  oUser:UserLogin={
-    lastname1:"",
-    lastname2:"",
-    name:"",
-    token:"",
-    userId:0,
-    username:""
-  }
+   oUser: UserLogin | null = null;
+
   constructor(private _http:HttpClient) { 
 
 

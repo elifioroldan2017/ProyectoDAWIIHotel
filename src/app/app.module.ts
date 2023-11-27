@@ -19,6 +19,7 @@ import { MenuComponent } from './menu/menu/menu.component';
 import { DetallereservaPrincipalComponent } from './detallereserva/detallereserva-principal/detallereserva-principal.component';
 import { LoginPageAppComponent } from './login-page-app/login-page-app.component';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { FormsModule } from '@angular/forms';
     UsuarioModule,
     HabitacionModule,
     MenuModule,
+    NgxPaginationModule
 
   ],
   providers: [
