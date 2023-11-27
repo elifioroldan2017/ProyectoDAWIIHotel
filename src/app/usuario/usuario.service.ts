@@ -5,6 +5,7 @@ import urlBase from '../contantes';
 import {Observable} from "rxjs"
 import { Pasajero } from '../pasajero/interfaces/Pasajero';
 import UserLogin from '../login-page-app/interfaces/UserLogin';
+import UsuarioRegister from './interface/UsuarioRegister';
 @Injectable({
   providedIn: 'root'
 })
@@ -65,6 +66,11 @@ export class UsuarioService {
  listarPersonasSinUsuarios(){
   return this._http.get<Pasajero[]>(urlBase+"/passenger/listWithoutUser")
  }
+
+
+ agregarUsuarioExterno(ousuario:UsuarioRegister){
+  return this._http.post<UsuarioRegister>(urlBase+"/user/register",ousuario)
+}
 
  get pasajeros(){
   return [...this._pasajero];

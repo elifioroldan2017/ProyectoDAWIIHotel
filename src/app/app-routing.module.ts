@@ -14,6 +14,7 @@ import { DetallereservaPrincipalComponent } from './reserva/detallereserva-princ
 import { LoginPageAppComponent } from './login-page-app/login-page-app.component';
 import { AuthGuard } from './loginPageApp/guards/auth.guard';
 import { MisReservasPageComponent } from './reserva/mis-reservas-page/mis-reservas-page.component';
+import { UsuarioRegisterComponent } from './usuario/usuario-register/usuario-register.component';
 
 const routes: Routes = [
 
@@ -26,6 +27,10 @@ const routes: Routes = [
     path:'pasajero',
     component: PasajeroPrincipalComponent,
     canActivate:[AuthGuard]
+  },
+  {
+    path:'registrar',
+    component: UsuarioRegisterComponent,
   },
   {
     path:'pasajero/agregar',

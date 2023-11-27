@@ -9,6 +9,7 @@ import { CustomMinDirective } from './form-usuario/custom-min.directive';
 import { MenuModule } from '../menu/menu.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AuthGuard } from '../loginPageApp/guards/auth.guard';
+import { UsuarioRegisterComponent } from './usuario-register/usuario-register.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AuthGuard } from '../loginPageApp/guards/auth.guard';
     UsuarioPrincipalComponent,
     TablaUsuarioComponent,
     FormUsuarioComponent,
-    CustomMinDirective
+    CustomMinDirective,
+    UsuarioRegisterComponent
   ],
   imports: [
     FormsModule,
