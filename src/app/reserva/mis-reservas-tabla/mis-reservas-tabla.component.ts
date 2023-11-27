@@ -10,7 +10,13 @@ import { UsuarioService } from 'src/app/usuario/usuario.service';
 })
 export class MisReservasTablaComponent {
   
-  
+  reservasL: any[] = []; // Asegúrate de que tus reservas tengan la propiedad 'details'
+  reservaSeleccionada: number | null = null;
+
+  // Método para mostrar/ocultar detalles
+  toggleDetails(index: number) {
+    this.reservaSeleccionada = this.reservaSeleccionada === index ? null : index;
+  }
   //reservas:ReservaList[]=[]
   nombreusuario:string=""
   totalLength:any;
