@@ -24,6 +24,7 @@ export class LoginPageAppService {
 
 
   login(ologin:Login){
+    console.log(urlBase)
     return this._http.post<UserLogin>(urlBase+"/user/login",ologin);
    }
 
