@@ -37,7 +37,7 @@ export class LoginPageAppComponent {
       this.servicioLogin.oUser=res;
       this.usuarioService.guardarUsuarioEnStorage(this.servicioLogin.oUser)
       this.detalleReserva.limpiarDetalle()
-      this.router.navigate(["/pasajero"])
+      this.router.navigate(["/reserva"])
     },(error) => {
       Swal.fire('Error', 'Usuario y/o contraseña incorrecta', 'error');
     })
