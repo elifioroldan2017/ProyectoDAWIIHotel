@@ -24,6 +24,10 @@ export class LoginPageAppComponent {
 
   }
 
+  nuevo(){
+    this.router.navigate(["/registrar"])
+  }
+
   enviar(){
     console.log(this.oLogin.user)
     console.log(this.oLogin.password)
