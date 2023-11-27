@@ -5,27 +5,27 @@
         <div class="row">
             <div class="col-md-6">
                 <label>Nombre</label>
-                <input  type="text" name="names" [(ngModel)]="ousuario.names" class="form-control" />
+                <input  type="text" required name="names" [(ngModel)]="ousuario.names" class="form-control" />
             </div>
             <div class="col-md-6">
                 <label>Apellido Paterno</label>
-                <input  type="text" name="lastname1" [(ngModel)]="ousuario.lastname1"  class="form-control" />
+                <input  type="text" required name="lastname1" [(ngModel)]="ousuario.lastname1"  class="form-control" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <label>Apellido Materno</label>
-                <input  type="text" name="lastname2" [(ngModel)]="ousuario.lastname2" class="form-control" />
+                <input  type="text" required name="lastname2" [(ngModel)]="ousuario.lastname2" class="form-control" />
             </div>
             <div class="col-md-6">
                 <label>Email</label>
-                <input  type="text" name="email" [(ngModel)]="ousuario.email" class="form-control" />
+                <input  type="text" required name="email" [(ngModel)]="ousuario.email" class="form-control" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <label>Telefono</label>
-                <input  type="text" [(ngModel)]="ousuario.phone" name="phone" class="form-control" />
+                <input  type="text" required [(ngModel)]="ousuario.phone" name="phone" class="form-control" />
             </div>
             <div class="col-md-6">
                 <label>Seleccione tipo documento</label>
@@ -58,7 +58,7 @@
             </div>
             <div class="col-md-6">
                 <label>Repita su contraseña</label>
-                <input  type="password" class="form-control" />
+                <input  type="password" class="form-control" name="password1" [(ngModel)]="ousuario.password1" />
             </div>
         </div>
         <div class="mt-3">

@@ -1,6 +1,7 @@
 export default interface UsuarioRegister {
     user: string;
     password: string;
+    password1: string;
     idtpodoc: number;
     nrodoc: string;
     names: string;
