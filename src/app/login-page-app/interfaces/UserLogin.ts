@@ -1,3 +1,5 @@
+import { MenuLogin } from "./MenuLogin";
+
 export default interface UserLogin{
     token:string,
     username:string,
@@ -5,5 +7,6 @@ export default interface UserLogin{
     name:string,
     lastname1:string,
     lastname2:string,
-    email:string
+    email:string,
+    menus: MenuLogin[]
 }
