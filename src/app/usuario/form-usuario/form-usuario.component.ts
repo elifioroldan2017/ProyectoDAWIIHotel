@@ -101,7 +101,8 @@ pasajeros:Pasajero[]=[]
                 asunto: 'Bienvenido a Hotel Premier',
                 contenido: `
 
-                ¡Bienvenido/a al Sistema de Reservas de Hotel Premier, ${objpass.names+ ' '+objpass.lastname1+' '+objpass.lastname2 }!
+                ¡Bienvenido/a al Sistema de Reservas de Hotel Premier, ${objpass.names+ ' '+objpass.lastname1+' '+objpass.lastname2 }! ,le queremos informar
+                que se acaba de crearle un usuario que es ${this.usuario.user}
 
                 Estamos emocionados de tenerte como parte de nuestro equipo de gestión. Aquí es donde puedes administrar las reservas del hotel de manera eficiente. Esperamos que encuentres todas las herramientas y funciones que necesitas para asegurar una experiencia de reserva fluida para nuestros huéspedes.
 
