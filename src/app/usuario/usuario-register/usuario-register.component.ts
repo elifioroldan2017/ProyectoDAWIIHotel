@@ -27,6 +27,16 @@ export class UsuarioRegisterComponent {
     user:""
   }
 
+  currentSection = 1;
+
+  nextSection() {
+    this.currentSection++;
+  }
+
+  prevSection() {
+    this.currentSection--;
+  }
+
   constructor(private router:Router,private pasajeroService:PasajeroService,private routes:ActivatedRoute,
     private usuarioService:UsuarioService,   private reservaService:ReservaService){
 
@@ -36,6 +46,7 @@ export class UsuarioRegisterComponent {
   get tipodocumentos(){
     return this.pasajeroService.tipodocumentos
   }
+
 
   regresar(){
     this.router.navigate(["/"])
